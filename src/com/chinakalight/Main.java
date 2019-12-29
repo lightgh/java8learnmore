@@ -12,13 +12,19 @@ public class Main {
         File[] hiddenFiles = new File(".").listFiles(new FileFilter() {
             @Override
             public boolean accept(File filePath) {
-                return filePath.isHidden();
+                return !filePath.isHidden();
             }
         });
 
         File[] hiddenFiles1 = new File(".").listFiles(File::isHidden);
 
+        System.out.println("Printing Hidden Files: ");
         Arrays.stream(hiddenFiles1).forEach(file ->{
+            System.out.println(file.getAbsoluteFile().toString());
+        });
+
+        System.out.println("Printing Not-Hidden Files: ");
+        Arrays.stream(hiddenFiles).forEach(file ->{
             System.out.println(file.getAbsoluteFile().toString());
         });
     }
